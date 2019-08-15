@@ -1,6 +1,8 @@
 /*
 	MagicMirror² : Yeelight LED Bulb Control
 	=========================================
+	A MagicMirror² Module for controlling the Yeelight LED Bulb
+
 	Developer : Zulkifli Mohamed (putera)
 	E-mail : mr.putera@gmail.com
 */
@@ -9,22 +11,19 @@ Module.register("MMM-Yeelight", {
 
 	// Default configurations
 	defaults: {
-		devicesInfo: []
-	},
-
-	start: function() {
-		var self = this;
-	},
-
-	notificationReceived: function(notification, payload, sender) {
-		//
+		lights: []
 	},
 
 	socketNotificationReceived: function(notification, payload) {
 		var self = this;
 
-		if (notification == 'YEELIGHT_NETWORK_SEARCH_RESULT') {
-			//
+		if (notification == 'TURN_ON_LIGHT')
+		{
+			this.sendSocketNotification('TURN_ON_LIGHT', {config: this.config, payload: payload});
+		}
+		else if (notification == 'TURN_OFF_LIGHT')
+		{
+			this.sendSocketNotification('TURN_OFF_LIGHT', {config: this.config, payload: payload});
 		}
 	}
 });
