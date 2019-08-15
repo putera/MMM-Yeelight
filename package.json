@@ -1,0 +1,19 @@
+{
+  "name": "MMM-Yeelight",
+  "version": "1.0.0",
+  "description": "A MagicMirror² Module for controlling the Yeelight LED Bulb",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/putera/MMM-Yeelight.git"
+  },
+  "keywords": ["MagicMirror", "Yeelight", "LED", "Bulb"],
+  "author": "Zulkifli Mohamed",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/putera/MMM-Yeelight/issues"
+  },
+  "homepage": "https://github.com/putera/MMM-Yeelight",
+  "dependencies": {
+    "node-yeelight-wifi": ">=0.1.2"
+  }
+}
