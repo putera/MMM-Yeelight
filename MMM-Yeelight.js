@@ -1,7 +1,7 @@
 /*
-	MagicMirror² : Yeelight LED Bulb Control
+	MagicMirror² : Yeelight Bulb Control
 	=========================================
-	A MagicMirror² Module for controlling the Yeelight LED Bulb
+	A MagicMirror² Module for controlling the Yeelight Bulb
 
 	Developer : Zulkifli Mohamed (putera)
 	E-mail : mr.putera@gmail.com
