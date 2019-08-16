@@ -4,13 +4,15 @@ A MagicMirror² Module for controlling the Yeelight Bulb
 ## Enabling the LAN Control option
 To enable the LAN control and make your lights discoverable by this module you need to:
 
-1. Tap on your light
-2. Open the `Yeelight` app on your phone.
+1. Turn on your light.
+2. Open the ``Yeelight`` app on your phone.
 3. Navigate to device, tap on the arrow to open a option menu
 4. Now select the LAN Control option
 5. Finally, enable the LAN Control by tapping on the switch. It will become green once the LAN control is enabled.
 
+
 ![LAN Control](img/lan-control.png)
+
 
 ## Installation
 1. Navigate into your MagicMirror's `modules` folder
