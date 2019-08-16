@@ -19,41 +19,38 @@ module.exports = NodeHelper.create({
 	turnOnLight: function(config, params) {
 		var self = this;
 		try {
-      		look = new Lookup();
+			look = new Lookup();
 			look.on("detected",(l) => {
-				let lightInfo = config.lights.find(lightInfo => lightInfo.ip === l.ip);
-				if (lightInfo)
+				let lightInfo = config.lights.find(light => light.ip === l.host);
+				if (lightInfo && l.power == false)
 					l.setPower('on');
 			});
-	    } catch(err) {
+		} catch(err) {
 			console.log(err);
-	    }
+		}
 	},
 
 	turnOffLight: function(config, params) {
 		var self = this;
 		try {
-      		look = new Lookup();
+			look = new Lookup();
 			look.on("detected",(l) => {
-				let lightInfo = config.lights.find(lightInfo => lightInfo.ip === l.ip);
-				if (lightInfo)
+				let lightInfo = config.lights.find(light => light.ip === l.host);
+				if (lightInfo && l.power == true)
 					l.setPower('off');
 			});
-	    } catch(err) {
+		} catch(err) {
 			console.log(err);
-	    }
+		}
 	},
 
 	socketNotificationReceived: function(notification, payload)
 	{
-		if (notification === 'TURN_ON_LIGHT')
-		{
+		if (notification === 'TURN_ON_LIGHT') {
 			this.turnOnLight(payload.config, payload.payload);
-		}
-		else if (notification === 'TURN_OFF_LIGHT')
-		{
+		} else if (notification === 'TURN_OFF_LIGHT') {
 			this.turnOffLight(payload.config, payload.payload);
 		}
-	},
+	}
 
 });
