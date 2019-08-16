@@ -8,18 +8,22 @@
 */
 
 Module.register("MMM-Yeelight", {
+	requiresVersion: "2.1.0",
 
 	// Default module configurations
 	defaults: {
 		lights: []
 	},
 
-	socketNotificationReceived: function(notification, payload) {
+	notificationReceived: function(notification, payload, sender) {
 		var self = this;
 
-		if (notification == 'TURN_ON_LIGHT') {
+		if (notification === 'TURN_ON_LIGHT')
+		{
 			this.sendSocketNotification('TURN_ON_LIGHT', {config: this.config, payload: payload});
-		} else if (notification == 'TURN_OFF_LIGHT') {
+		}
+		else if (notification === 'TURN_OFF_LIGHT')
+		{
 			this.sendSocketNotification('TURN_OFF_LIGHT', {config: this.config, payload: payload});
 		}
 	}

@@ -12,6 +12,8 @@ var Lookup = require('node-yeelight-wifi').Lookup;
 var look;
 
 module.exports = NodeHelper.create({
+	requiresVersion: "2.1.0",
+
 	start: function() {
 		console.log("[MMM-Yeelight] Starting Yeelight modules...");
 	},
@@ -23,7 +25,7 @@ module.exports = NodeHelper.create({
 			look.on("detected",(l) => {
 				let lightInfo = config.lights.find(light => light.ip === l.host);
 				if (lightInfo && l.power == false)
-					l.setPower('on');
+					l.setPower('on', params.timer);
 			});
 		} catch(err) {
 			console.log(err);
@@ -37,7 +39,7 @@ module.exports = NodeHelper.create({
 			look.on("detected",(l) => {
 				let lightInfo = config.lights.find(light => light.ip === l.host);
 				if (lightInfo && l.power == true)
-					l.setPower('off');
+					l.setPower('off', params.timer);
 			});
 		} catch(err) {
 			console.log(err);
@@ -46,9 +48,12 @@ module.exports = NodeHelper.create({
 
 	socketNotificationReceived: function(notification, payload)
 	{
-		if (notification === 'TURN_ON_LIGHT') {
+		if (notification === 'TURN_ON_LIGHT')
+		{
 			this.turnOnLight(payload.config, payload.payload);
-		} else if (notification === 'TURN_OFF_LIGHT') {
+		}
+		else if (notification === 'TURN_OFF_LIGHT')
+		{
 			this.turnOffLight(payload.config, payload.payload);
 		}
 	}
