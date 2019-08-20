@@ -45,7 +45,7 @@ module.exports = NodeHelper.create({
 			for (var i = 0; i < lights.length; i++)
 			{
 				let light = config.lights.find(l => l.ip === lights[i].host);
-				if (light && lights[i].power == false) {
+				if (light && lights[i].power == true) {
 					lights[i].setPower('off', params.timer);
 				}
 			}
