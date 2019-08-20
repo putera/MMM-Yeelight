@@ -32,7 +32,7 @@ module.exports = NodeHelper.create({
 			{
 				let light = config.lights.find(l => l.ip === lights[i].host);
 				if (light && lights[i].power == false) {
-					light.setPower('on', params.timer);
+					lights[i].setPower('on', params.timer);
 				}
 			}
 		}, 1000);
@@ -46,7 +46,7 @@ module.exports = NodeHelper.create({
 			{
 				let light = config.lights.find(l => l.ip === lights[i].host);
 				if (light && lights[i].power == false) {
-					light.setPower('off', params.timer);
+					lights[i].setPower('off', params.timer);
 				}
 			}
 		}, 1000);
