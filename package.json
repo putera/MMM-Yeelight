@@ -14,6 +14,6 @@
   },
   "homepage": "https://github.com/putera/MMM-Yeelight",
   "dependencies": {
-    "node-yeelight-wifi": ">=0.1.2"
+    "node-yeelight-wifi": "latest"
   }
 }
