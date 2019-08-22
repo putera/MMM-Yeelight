@@ -68,7 +68,7 @@ Module.register("MMM-Yeelight", {
 			}
 		}
 
-		handler.reply("TEXT", text, {parse_mode:'Markdown'});
+		handler.say("TEXT", text, {parse_mode:'Markdown'});
 	},
 
 	notificationReceived: function(notification, payload, sender) {

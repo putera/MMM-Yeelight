@@ -78,5 +78,4 @@ module.exports = NodeHelper.create({
 			this.turnOffLight(payload.config, payload.payload);
 		}
 	}
-
 });
