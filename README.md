@@ -30,6 +30,7 @@ modules: [
         module: 'MMM-Yeelight',
         config: {
             // See 'Configuration options' for more information.
+            // remove the lights parameter if you want to control all the lights on the network
             lights: [
             	{ name: 'My Kitchen Light 1', ip: '192.168.1.10'},
             	{ name: 'Living Room 1', ip: '192.168.1.11'},
@@ -45,4 +46,4 @@ The following properties can be configured:
 
 | **Option** | **Description** |
 | --- | --- |
-| `lights` | List of all your Yeelight bulb |
+| `lights` | (*Optional*) List of all your Yeelight bulb |

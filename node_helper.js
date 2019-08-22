@@ -30,9 +30,18 @@ module.exports = NodeHelper.create({
 			let lights = this.look.getLights();
 			for (var i = 0; i < lights.length; i++)
 			{
-				let light = config.lights.find(l => l.ip === lights[i].host);
-				if (light && lights[i].power == false) {
-					lights[i].setPower('on', params.timer);
+				if (config.lights.length > 0)
+				{
+					let light = config.lights.find(l => l.ip === lights[i].host);
+					if (light && lights[i].power == false) {
+						lights[i].setPower('on', params.timer);
+					}
+				}
+				else
+				{
+					if (lights[i].power == false) {
+						lights[i].setPower('on', params.timer);
+					}
 				}
 			}
 		}, 1000);
@@ -44,9 +53,18 @@ module.exports = NodeHelper.create({
 			let lights = this.look.getLights();
 			for (var i = 0; i < lights.length; i++)
 			{
-				let light = config.lights.find(l => l.ip === lights[i].host);
-				if (light && lights[i].power == true) {
-					lights[i].setPower('off', params.timer);
+				if (config.lights.length > 0)
+				{
+					let light = config.lights.find(l => l.ip === lights[i].host);
+					if (light && lights[i].power == true) {
+						lights[i].setPower('off', params.timer);
+					}
+				}
+				else
+				{
+					if (lights[i].power == true) {
+						lights[i].setPower('off', params.timer);
+					}
 				}
 			}
 		}, 1000);
