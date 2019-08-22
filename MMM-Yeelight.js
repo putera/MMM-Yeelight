@@ -55,12 +55,12 @@ Module.register("MMM-Yeelight", {
 				var stat = handler.args['onoff'].toLowerCase();
 				if (stat == 'on')
 				{
-					this.sendNotification('TURN_ON_LIGHT', {timer: 2000});
+					this.sendSocketNotification('TURN_ON_LIGHT', {config: this.config, payload: {timer: 2000}});
 					text = this.translate("TELBOT_LIGHT_TURNING_ON");
 				}
 				else if (stat == 'off')
 				{
-					this.sendNotification('TURN_OFF_LIGHT', {timer: 2000});
+					this.sendSocketNotification('TURN_OFF_LIGHT', {config: this.config, payload: {timer: 2000}});
 					text = this.translate("TELBOT_LIGHT_TURNING_OFF");
 				}
 			} else {
