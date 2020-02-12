@@ -70,12 +70,103 @@ module.exports = NodeHelper.create({
 		}, 1000);
 	},
 
+	LightChangeColor: function(config, params) {
+		var color;
+		if (params == 'red' || params == 'merah') {
+			color = [255,0,0];
+		} else if (params == 'green' || params == 'hijau') {
+			color = [0,255,0];
+		} else if (params == 'blue' || params == 'biru') {
+			color = [0,0,255];
+		} else if (params == 'pink' || params == 'merah jambu') {
+			color = [255,0,255];
+		} else if (params == 'purple' || params == 'unggu') {
+			color = [155,0,255];
+		} else if (params == 'white' || params == 'putih') {
+			color = [255,255,255];
+		} else if (params == 'yellow' || params == 'kuning') {
+			color = [255,255,0];
+		} else if (params == 'orange' || params == 'oren' || params == 'jingga') {
+			color = [255,130,0];
+		}
+
+		setTimeout(() =>
+		{
+			let lights = this.look.getLights();
+			for (var i = 0; i < lights.length; i++)
+			{
+				if (config.lights.length > 0)
+				{
+					let light = config.lights.find(l => l.ip === lights[i].host);
+					if (light && lights[i].power == true) {
+						lights[i].setRGB(color);
+						lights[i].setBright(50);
+					}
+				}
+				else
+				{
+					if (lights[i].power == true) {
+						lights[i].setRGB(color);
+						lights[i].setBright(50);
+					}
+				}
+			}
+		}, 1000);
+	},
+
+	LightChangeBright: function(config, params) {
+		var bright;
+		if (params == 'dim' || params == 'dimmed' || params == 'malap' || params == 'gelap') {
+			bright = 20;
+		} else {
+			bright = 100;
+		}
+
+		setTimeout(() =>
+		{
+			let lights = this.look.getLights();
+			for (var i = 0; i < lights.length; i++)
+			{
+				if (config.lights.length > 0)
+				{
+					let light = config.lights.find(l => l.ip === lights[i].host);
+					if (light && lights[i].power == true) {
+						lights[i].setBright(bright);
+					}
+				}
+				else
+				{
+					if (lights[i].power == true) {
+						lights[i].setBright(bright);
+					}
+				}
+			}
+		}, 1000);
+	},
+
+
 	socketNotificationReceived: function(notification, payload)
 	{
-		if (notification === 'TURN_ON_LIGHT') {
+		if (notification === 'TURN_ON_LIGHT')
+		{
 			this.turnOnLight(payload.config, payload.payload);
-		} else if (notification === 'TURN_OFF_LIGHT') {
+		}
+		else if (notification === 'TURN_OFF_LIGHT')
+		{
 			this.turnOffLight(payload.config, payload.payload);
+		}
+		else if (notification === 'TURN_ON_LIGHT_COLOR')
+		{
+			this.turnOnLight(payload.config, {timer: 2000});
+			this.LightChangeColor(payload.config, payload.payload);
+		}
+		else if (notification === 'LIGHT_CHANGE_COLOR')
+		{
+			this.LightChangeColor(payload.config, payload.payload);
+		}
+		else if (notification === 'LIGHT_CHANGE_BRIGHT')
+		{
+			this.LightChangeBright(payload.config, payload.payload);
 		}
 	}
 });

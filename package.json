@@ -6,7 +6,12 @@
     "type": "git",
     "url": "git+https://github.com/putera/MMM-Yeelight.git"
   },
-  "keywords": ["MagicMirror", "Yeelight", "RGB", "Bulb"],
+  "keywords": [
+    "MagicMirror",
+    "Yeelight",
+    "RGB",
+    "Bulb"
+  ],
   "author": "Zulkifli Mohamed",
   "license": "MIT",
   "bugs": {

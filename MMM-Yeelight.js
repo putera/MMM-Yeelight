@@ -74,10 +74,21 @@ Module.register("MMM-Yeelight", {
 	notificationReceived: function(notification, payload, sender) {
 		var self = this;
 
-		if (notification === 'TURN_ON_LIGHT') {
+		if (notification === 'TURN_ON_LIGHT')
+		{
 			this.sendSocketNotification('TURN_ON_LIGHT', {config: this.config, payload: payload});
-		} else if (notification === 'TURN_OFF_LIGHT') {
+		}
+		else if (notification === 'TURN_OFF_LIGHT')
+		{
 			this.sendSocketNotification('TURN_OFF_LIGHT', {config: this.config, payload: payload});
+		}
+		else if (notification === 'TURN_ON_LIGHT_COLOR')
+		{
+			this.sendSocketNotification('TURN_ON_LIGHT_COLOR', {config: this.config, payload: payload});
+		}
+		else if (notification === 'LIGHT_CHANGE_COLOR')
+		{
+			this.sendSocketNotification('LIGHT_CHANGE_COLOR', {config: this.config, payload: payload});
 		}
 	}
 });
