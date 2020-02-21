@@ -25,9 +25,19 @@ module.exports = NodeHelper.create({
 	},
 
 	turnOnLight: function(config, params) {
+		var self = this;
+
 		setTimeout(() =>
 		{
 			let lights = this.look.getLights();
+			
+			if (lights.length == 0)
+			{
+				self.sendSocketNotification('SHOW_ALERT', {
+					message:"NO_LIGHTS_AVAILABLE", timer: 5000
+				});
+			}
+			
 			for (var i = 0; i < lights.length; i++)
 			{
 				if (config.lights.length > 0)
@@ -48,9 +58,18 @@ module.exports = NodeHelper.create({
 	},
 
 	turnOffLight: function(config, params) {
+		var self = this;
 		setTimeout(() =>
 		{
 			let lights = this.look.getLights();
+			
+			if (lights.length == 0)
+			{
+				self.sendSocketNotification('SHOW_ALERT', {
+					message:"NO_LIGHTS_AVAILABLE", timer: 5000
+				});
+			}
+
 			for (var i = 0; i < lights.length; i++)
 			{
 				if (config.lights.length > 0)
@@ -71,6 +90,7 @@ module.exports = NodeHelper.create({
 	},
 
 	LightChangeColor: function(config, params) {
+		var self = this;
 		var color;
 		if (params == 'red' || params == 'merah') {
 			color = [255,0,0];
@@ -93,6 +113,14 @@ module.exports = NodeHelper.create({
 		setTimeout(() =>
 		{
 			let lights = this.look.getLights();
+			
+			if (lights.length == 0)
+			{
+				self.sendSocketNotification('SHOW_ALERT', {
+					message:"NO_LIGHTS_AVAILABLE", timer: 5000
+				});
+			}
+			
 			for (var i = 0; i < lights.length; i++)
 			{
 				if (config.lights.length > 0)
@@ -115,6 +143,7 @@ module.exports = NodeHelper.create({
 	},
 
 	LightChangeBright: function(config, params) {
+		var self = this;
 		var bright;
 		if (params == 'dim' || params == 'dimmed' || params == 'malap' || params == 'gelap') {
 			bright = 20;
@@ -125,6 +154,14 @@ module.exports = NodeHelper.create({
 		setTimeout(() =>
 		{
 			let lights = this.look.getLights();
+			
+			if (lights.length == 0)
+			{
+				self.sendSocketNotification('SHOW_ALERT', {
+					message:"NO_LIGHTS_AVAILABLE", timer: 5000
+				});
+			}
+			
 			for (var i = 0; i < lights.length; i++)
 			{
 				if (config.lights.length > 0)

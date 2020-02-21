@@ -3,5 +3,6 @@
   "TELBOT_LIGHT_TURNING_ON" : "Turning ON the light for you",
   "TELBOT_LIGHT_TURNING_OFF" : "Turning OFF the light for you",
   "TELBOT_LIGHT_SPEFICY" : "Do you want the light to be ON or OFF ? Please specify.",
-  "TELBOT_LIGHT_NOT_INSTALLED" : "Ops! You need to install MMM-Yeelight before you can use the command."
+  "TELBOT_LIGHT_NOT_INSTALLED" : "Ops! You need to install MMM-Yeelight before you can use the command.",
+  "NO_LIGHTS_AVAILABLE" : "No lights available on the network."
 }

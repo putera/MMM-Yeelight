@@ -3,5 +3,6 @@
   "TELBOT_LIGHT_TURNING_ON" : "Sedang buka lampu sekarang.",
   "TELBOT_LIGHT_TURNING_OFF" : "Sedang menutup lampu sekarang.",
   "TELBOT_LIGHT_SPEFICY" : "Nak buka ke tutup lampu ? Sila beritahu pada saya.",
-  "TELBOT_LIGHT_NOT_INSTALLED" : "Alamak ! Anda perlu memasang modul `MMM-Yeelight` sebelum anda boleh menggunakan arahan ini."
+  "TELBOT_LIGHT_NOT_INSTALLED" : "Alamak ! Anda perlu memasang modul `MMM-Yeelight` sebelum anda boleh menggunakan arahan ini.",
+  "NO_LIGHTS_AVAILABLE" : "Tiada lampu yang dijumpai."
 }

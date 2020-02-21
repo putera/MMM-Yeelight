@@ -71,6 +71,14 @@ Module.register("MMM-Yeelight", {
 		handler.say("TEXT", text, {parse_mode:'Markdown'});
 	},
 
+	socketNotificationReceived: function(notification, payload) {
+		if (notification === 'SHOW_ALERT')
+		{
+			payload.message = this.translate(payload.message);
+			this.sendNotification(notification, payload);
+		}        
+    },
+
 	notificationReceived: function(notification, payload, sender) {
 		var self = this;
 
@@ -89,6 +97,6 @@ Module.register("MMM-Yeelight", {
 		else if (notification === 'LIGHT_CHANGE_COLOR')
 		{
 			this.sendSocketNotification('LIGHT_CHANGE_COLOR', {config: this.config, payload: payload});
-		}
+		}		
 	}
 });
