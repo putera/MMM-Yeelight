@@ -34,7 +34,9 @@ module.exports = NodeHelper.create({
 			if (lights.length == 0)
 			{
 				self.sendSocketNotification('SHOW_ALERT', {
-					message:"NO_LIGHTS_AVAILABLE", timer: 5000
+					type: "notification",
+					message:"NO_LIGHTS_AVAILABLE",
+					timer: 5000
 				});
 			}
 			
@@ -44,13 +46,21 @@ module.exports = NodeHelper.create({
 				{
 					let light = config.lights.find(l => l.ip === lights[i].host);
 					if (light && lights[i].power == false) {
-						lights[i].setPower('on', params.timer);
+						if (params.mode) {
+							lights[i].setPower('on', params.timer, 'smooth', '4');
+						} else {
+							lights[i].setPower('on', params.timer);
+						}
 					}
 				}
 				else
 				{
 					if (lights[i].power == false) {
-						lights[i].setPower('on', params.timer);
+						if (params.mode) {
+							lights[i].setPower('on', params.timer, 'smooth', '4');
+						} else {
+							lights[i].setPower('on', params.timer);
+						}
 					}
 				}
 			}
@@ -66,8 +76,11 @@ module.exports = NodeHelper.create({
 			if (lights.length == 0)
 			{
 				self.sendSocketNotification('SHOW_ALERT', {
-					message:"NO_LIGHTS_AVAILABLE", timer: 5000
+					type: "notification",
+					message:"NO_LIGHTS_AVAILABLE",
+					timer: 5000
 				});
+				return;
 			}
 
 			for (var i = 0; i < lights.length; i++)
@@ -113,14 +126,6 @@ module.exports = NodeHelper.create({
 		setTimeout(() =>
 		{
 			let lights = this.look.getLights();
-			
-			if (lights.length == 0)
-			{
-				self.sendSocketNotification('SHOW_ALERT', {
-					message:"NO_LIGHTS_AVAILABLE", timer: 5000
-				});
-			}
-			
 			for (var i = 0; i < lights.length; i++)
 			{
 				if (config.lights.length > 0)
@@ -158,7 +163,9 @@ module.exports = NodeHelper.create({
 			if (lights.length == 0)
 			{
 				self.sendSocketNotification('SHOW_ALERT', {
-					message:"NO_LIGHTS_AVAILABLE", timer: 5000
+					type: "notification",
+					message:"NO_LIGHTS_AVAILABLE",
+					timer: 5000
 				});
 			}
 			
@@ -182,28 +189,31 @@ module.exports = NodeHelper.create({
 	},
 
 
-	socketNotificationReceived: function(notification, payload)
-	{
-		if (notification === 'TURN_ON_LIGHT')
+	socketNotificationReceived: function(notification, payload) {
+		switch(notification)
 		{
-			this.turnOnLight(payload.config, payload.payload);
-		}
-		else if (notification === 'TURN_OFF_LIGHT')
-		{
-			this.turnOffLight(payload.config, payload.payload);
-		}
-		else if (notification === 'TURN_ON_LIGHT_COLOR')
-		{
-			this.turnOnLight(payload.config, {timer: 2000});
-			this.LightChangeColor(payload.config, payload.payload);
-		}
-		else if (notification === 'LIGHT_CHANGE_COLOR')
-		{
-			this.LightChangeColor(payload.config, payload.payload);
-		}
-		else if (notification === 'LIGHT_CHANGE_BRIGHT')
-		{
-			this.LightChangeBright(payload.config, payload.payload);
+			case 'TURN_ON_LIGHT':
+				this.turnOnLight(payload.config, payload.payload);
+			break;
+			case 'TURN_OFF_LIGHT':
+				this.turnOffLight(payload.config, payload.payload);
+			break;
+			case 'TURN_ON_LIGHT_COLOR':
+			{
+				this.turnOnLight(payload.config, {timer: 2000});
+				this.LightChangeColor(payload.config, payload.payload);
+				break;
+			}
+			case 'LIGHT_CHANGE_COLOR':
+				this.LightChangeColor(payload.config, payload.payload);
+			break;
+			case 'LIGHT_CHANGE_BRIGHT':
+				this.LightChangeBright(payload.config, payload.payload);
+			break;
+			case 'LIGHT_ON_FLOW':
+				this.turnOnLight(payload.config, payload.payload);
+			break;
+			default:
 		}
 	}
 });
