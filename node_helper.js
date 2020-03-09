@@ -39,27 +39,79 @@ module.exports = NodeHelper.create({
 					timer: 5000
 				});
 			}
-			
+
 			for (var i = 0; i < lights.length; i++)
 			{
 				if (config.lights.length > 0)
 				{
 					let light = config.lights.find(l => l.ip === lights[i].host);
-					if (light && lights[i].power == false) {
-						if (params.mode) {
-							lights[i].setPower('on', params.timer, 'smooth', '4');
-						} else {
+					if (light && lights[i].power == false)
+					{
+						if (params.mode == "flow")
+						{
+							lights[i].setColorFlow(params.timer, 0, 1, "\
+								1000,1,255,0,0,50, \
+								1000,1,255,130,0,50, \
+								1000,1,255,255,0,50, \
+								1000,1,0,255,0,50, \
+								1000,1,0,0,255,50, \
+								1000,1,255,0,255,50, \
+								1000,1,155,0,255,50");
+						}
+						else
+						{
 							lights[i].setPower('on', params.timer);
+						}
+					}
+					else
+					{
+						if (params.mode == "flow")
+						{
+							lights[i].setColorFlow(params.timer, 0, 1, "\
+								1000,1,255,0,0,50, \
+								1000,1,255,130,0,50, \
+								1000,1,255,255,0,50, \
+								1000,1,0,255,0,50, \
+								1000,1,0,0,255,50, \
+								1000,1,255,0,255,50, \
+								1000,1,155,0,255,50");
 						}
 					}
 				}
 				else
 				{
-					if (lights[i].power == false) {
-						if (params.mode) {
-							lights[i].setPower('on', params.timer, 'smooth', '4');
-						} else {
+					if (lights[i].power == false)
+					{
+						if (params.mode == "flow")
+						{
+							console.log('on flow')
+							lights[i].setColorFlow(params.timer, 0, 0, "\
+								1000,1,255,0,0,50, \
+								1000,1,255,130,0,50, \
+								1000,1,255,255,0,50, \
+								1000,1,0,255,0,50, \
+								1000,1,0,0,255,50, \
+								1000,1,255,0,255,50, \
+								1000,1,155,0,255,50");
+						}
+						else
+						{
 							lights[i].setPower('on', params.timer);
+						}
+					}
+					else
+					{
+						if (params.mode == "flow")
+						{
+							console.log('flow')
+							lights[i].setColorFlow(params.timer, 0, 0, "\
+								1000,1,255,0,0,50, \
+								1000,1,255,130,0,50, \
+								1000,1,255,255,0,50, \
+								1000,1,0,255,0,50, \
+								1000,1,0,0,255,50, \
+								1000,1,255,0,255,50, \
+								1000,1,155,0,255,50");
 						}
 					}
 				}
@@ -105,6 +157,7 @@ module.exports = NodeHelper.create({
 	LightChangeColor: function(config, params) {
 		var self = this;
 		var color;
+		params = params.toLowerCase();
 		if (params == 'red' || params == 'merah') {
 			color = [255,0,0];
 		} else if (params == 'green' || params == 'hijau') {
