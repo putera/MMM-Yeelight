@@ -76,7 +76,7 @@ Module.register("MMM-Yeelight", {
 		{
 			payload.message = this.translate(payload.message);
 			this.sendNotification(notification, payload);
-		}        
+		}
     },
 
 	notificationReceived: function(notification, payload, sender) {
@@ -97,7 +97,7 @@ Module.register("MMM-Yeelight", {
 			break;
 			case 'LIGHT_ON_FLOW':
 				this.sendSocketNotification('LIGHT_ON_FLOW', {config: this.config, payload: payload});
-			break;
+			break;			
 			default:
 		}		
 	}
